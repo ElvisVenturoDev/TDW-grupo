@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "shared/_producto_card.html" import producto_card %}
 
 {% block title %}Santa Clara | De nuestro campo a tu hogar{% endblock %}
 {% block meta_description %}Conoce productos lácteos frescos, naturales y nutritivos elaborados por-productores locales de Santa Clara.{% endblock %}
@@ -20,22 +21,7 @@
 
     <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {% for product in products %}
-        <article class="group overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-xl" data-featured-card>
-            <div class="aspect-[4/3] overflow-hidden bg-cream">
-                <img class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" src="{{ product.image }}" alt="{{ product.alt }}" width="600" height="450" loading="lazy">
-            </div>
-            <div class="p-5">
-                <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-field">{{ product.category }}</p>
-                <h3 class="mt-2 font-display text-xl font-semibold text-navy transition-colors duration-300 group-hover:text-field">{{ product.name }}</h3>
-                <p class="mt-1 text-sm text-slate-500">{{ product.detail }}</p>
-                <div class="mt-4 flex items-center justify-between gap-3">
-                    <a href="{{ url_for('formulario.formulario', producto=product.name) }}" class="inline-flex items-center gap-2 text-xs font-bold text-navy transition-colors duration-300 hover:text-field">Pedir ahora <span aria-hidden="true">→</span></a>
-                    <button type="button" data-add-to-cart data-quick-add data-product-id="{{ product.id }}" data-product-name="{{ product.name }}" data-product-detail="{{ product.detail }}" data-product-price="{{ product.price }}" data-product-image="{{ product.image }}" class="product-order-link flex h-9 w-9 shrink-0 items-center justify-center rounded-full" aria-label="Agregar {{ product.name }} al carrito" title="Agregar al carrito">
-                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                    </button>
-                </div>
-            </div>
-        </article>
+        {{ producto_card(product, "destacado") }}
         {% endfor %}
     </div>
 </section>
@@ -50,11 +36,7 @@
     </div>
 
     <div data-reveal="right" class="relative">
-<<<<<<< HEAD
-        <img class="aspect-[4/3] w-full rounded-3xl object-cover shadow-xl" src="https://images.unsplash.com/photo-1500076656116-558758c991c1?auto=format&fit=crop&w=1200&q=85" alt="Productores trabajando en el campo" width="900" height="675" loading="lazy">
-=======
         <img class="aspect-[4/3] w-full rounded-3xl object-cover shadow-xl" src="{{ url_for('static', filename='img/imgCasa.avif') }}" alt="Productores trabajando en el campo" width="900" height="675" loading="lazy">
->>>>>>> develop
         <div class="absolute -bottom-6 -left-4 max-w-xs rounded-2xl bg-white p-5 shadow-xl sm:-left-8">
             <p class="font-display text-3xl text-field">100%</p>
             <p class="mt-1 text-xs font-bold uppercase tracking-wider text-navy">Origen local y cercano</p>

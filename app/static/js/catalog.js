@@ -16,24 +16,16 @@
     const originalOrder = new Map(cards.map((card, index) => [card, index]));
     const favoriteKey = "santaclara-favorites";
 
+    const storage = Miskylac.storage;
+
     const readFavorites = () => {
-        try {
-            const stored = JSON.parse(localStorage.getItem(favoriteKey) || "[]");
-            return new Set(Array.isArray(stored) ? stored : []);
-        } catch {
-            return new Set();
-        }
+        const stored = storage.getJSON(favoriteKey, []);
+        return new Set(Array.isArray(stored) ? stored : []);
     };
 
     const favorites = readFavorites();
 
-    const saveFavorites = () => {
-        try {
-            localStorage.setItem(favoriteKey, JSON.stringify([...favorites]));
-        } catch {
-            // El catálogo sigue funcionando si el navegador bloquea el almacenamiento.
-        }
-    };
+    const saveFavorites = () => storage.setJSON(favoriteKey, [...favorites]);
 
     const isFeatured = (card) => card.dataset.featured === "true";
 

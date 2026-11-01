@@ -1,12 +1,6 @@
 @theme {
-<<<<<<< HEAD
-    /* Tipografía: Plus Jakarta Sans (UI) + Playfair Display (títulos).
-       "DM Sans" queda como reserva cargada en la plantilla. */
-    --font-sans: "Plus Jakarta Sans", "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-=======
     /* Tipografía: Plus Jakarta Sans (UI) + Playfair Display (títulos). */
     --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
->>>>>>> develop
     --font-display: "Playfair Display", ui-serif, Georgia, serif;
 
     /* Paleta de marca: navy profundo + verde natural + superficies CÁLIDAS.
@@ -59,8 +53,6 @@
 }
 
 :root {
-<<<<<<< HEAD
-=======
     --dark-background: #0c1a2b;
     --dark-surface: #132437;
     --dark-surface-muted: #1b3047;
@@ -83,7 +75,6 @@
     --dark-catalog-end: #1b2b1f;
     --dark-chat-text: #e2e8f0;
 
->>>>>>> develop
     /* Tokens de movimiento reutilizables. */
     --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
     /* Salida "expo": arranca rápido y asienta suave. Ideal para entradas y reveals. */
@@ -171,8 +162,6 @@
     }
 }
 
-<<<<<<< HEAD
-=======
 /* ===== Componentes reutilizables ===== */
 
 @layer components {
@@ -219,7 +208,6 @@
     }
 }
 
->>>>>>> develop
 /* Transición de color compartida para que el cambio de tema no sea brusco. */
 #mobile-nav,
 #cart-panel,
@@ -250,13 +238,8 @@ header[data-site-header].is-scrolled {
 /* ===== Modo oscuro ===== */
 
 body.dark-mode {
-<<<<<<< HEAD
-    background: #0c1a2b;
-    color: #e6edf5;
-=======
     background: var(--dark-background);
     color: var(--dark-text);
->>>>>>> develop
     color-scheme: dark;
 }
 
@@ -267,11 +250,7 @@ body.dark-mode header,
 body.dark-mode #mobile-nav,
 body.dark-mode #cart-panel,
 body.dark-mode .catalog-toolbar {
-<<<<<<< HEAD
-    background-color: #132437;
-=======
     background-color: var(--dark-surface);
->>>>>>> develop
 }
 
 body.dark-mode .bg-slate-50,
@@ -283,40 +262,24 @@ body.dark-mode .bg-emerald-50,
 body.dark-mode .bg-emerald-100,
 body.dark-mode .bg-sky-100,
 body.dark-mode .bg-amber-100 {
-<<<<<<< HEAD
-    background-color: #1b3047;
-}
-
-body.dark-mode .catalog-section {
-    background: linear-gradient(180deg, #0f2438 0%, #1b2b1f 100%);
-=======
     background-color: var(--dark-surface-muted);
 }
 
 body.dark-mode .catalog-section {
     background: linear-gradient(180deg, var(--dark-catalog-start) 0%, var(--dark-catalog-end) 100%);
->>>>>>> develop
 }
 
 body.dark-mode .catalog-section #catalog-title,
 body.dark-mode .text-navy,
 body.dark-mode .text-ink,
 body.dark-mode .text-slate-800 {
-<<<<<<< HEAD
-    color: #dbeafe;
-=======
     color: var(--dark-text-heading);
->>>>>>> develop
 }
 
 body.dark-mode .text-slate-500,
 body.dark-mode .text-slate-600,
 body.dark-mode .text-slate-700 {
-<<<<<<< HEAD
-    color: #b8c7da;
-=======
     color: var(--dark-text-muted);
->>>>>>> develop
 }
 
 body.dark-mode .text-field,
@@ -324,11 +287,7 @@ body.dark-mode .text-field-dark,
 body.dark-mode .text-emerald-800,
 body.dark-mode .text-sky-700,
 body.dark-mode .text-amber-700 {
-<<<<<<< HEAD
-    color: #a9d7b4;
-=======
     color: var(--dark-text-accent);
->>>>>>> develop
 }
 
 body.dark-mode .border-slate-100,
@@ -336,30 +295,11 @@ body.dark-mode .border-slate-200,
 body.dark-mode .border-slate-300,
 body.dark-mode [data-catalog-card],
 body.dark-mode [data-featured-card] {
-<<<<<<< HEAD
-    border-color: #2c4661;
-=======
     border-color: var(--dark-border);
->>>>>>> develop
 }
 
 body.dark-mode .catalog-count,
 body.dark-mode .catalog-empty {
-<<<<<<< HEAD
-    border-color: #2c4661;
-    background: #132437;
-    color: #d1fae5;
-}
-
-body.dark-mode .product-category {
-    background: #24382a;
-    color: #cbe3a8;
-}
-
-body.dark-mode .product-price {
-    background: #3a2f1a;
-    color: #fde68a;
-=======
     border-color: var(--dark-border);
     background: var(--dark-surface);
     color: var(--dark-text-positive);
@@ -373,43 +313,23 @@ body.dark-mode .product-category {
 body.dark-mode .product-price {
     background: var(--dark-price-surface);
     color: var(--dark-price-text);
->>>>>>> develop
 }
 
 body.dark-mode input,
 body.dark-mode select,
 body.dark-mode textarea {
-<<<<<<< HEAD
-    border-color: #2c4661;
-    background-color: #0f2033;
-    color: #e6edf5;
-=======
     border-color: var(--dark-border);
     background-color: var(--dark-input-surface);
     color: var(--dark-text);
->>>>>>> develop
 }
 
 body.dark-mode input::placeholder,
 body.dark-mode textarea::placeholder {
-<<<<<<< HEAD
-    color: #8ea2ba;
-=======
     color: var(--dark-placeholder);
->>>>>>> develop
 }
 
 body.dark-mode [class~="hover:bg-slate-50"]:hover,
 body.dark-mode [class~="hover:bg-slate-100"]:hover {
-<<<<<<< HEAD
-    background-color: #24384f;
-}
-
-body.dark-mode #toastContainer > div {
-    border-color: #2c4661;
-    background-color: #132437;
-    color: #e6edf5;
-=======
     background-color: var(--dark-surface-hover);
 }
 
@@ -417,7 +337,6 @@ body.dark-mode #toastContainer > div {
     border-color: var(--dark-border);
     background-color: var(--dark-surface);
     color: var(--dark-text);
->>>>>>> develop
 }
 
 body.dark-mode header[data-site-header].is-scrolled {
@@ -649,17 +568,6 @@ body.dark-mode header[data-site-header].is-scrolled {
     scale: 0.9;
 }
 
-<<<<<<< HEAD
-[data-category-tabs] [data-category] {
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease,
-        border-color 0.3s ease,
-        transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-=======
->>>>>>> develop
 [data-category-tabs] [data-category]:hover {
     transform: translateY(-2px);
 }
@@ -935,42 +843,6 @@ body.dark-mode header[data-site-header].is-scrolled {
 }
 
 body.dark-mode .chatbot-panel {
-<<<<<<< HEAD
-    border-color: #2c4661;
-    background: #132437;
-    color: #e6edf5;
-}
-
-body.dark-mode .chatbot-message--assistant {
-    border-color: #2c4661;
-    background: #1b3047;
-    color: #e2e8f0;
-}
-
-body.dark-mode .chatbot-message a {
-    background: #24384f;
-    color: #dbeafe;
-}
-
-body.dark-mode .chatbot-suggestions button {
-    border-color: #2c4661;
-    background: #1b3047;
-    color: #d1fae5;
-}
-
-body.dark-mode .chatbot-form {
-    border-color: #2c4661;
-}
-
-body.dark-mode .chatbot-form input {
-    border-color: #2c4661;
-    background: #0f2033;
-    color: #e6edf5;
-}
-
-body.dark-mode .chatbot-disclaimer {
-    color: #8ea2ba;
-=======
     border-color: var(--dark-border);
     background: var(--dark-surface);
     color: var(--dark-text);
@@ -1005,7 +877,6 @@ body.dark-mode .chatbot-form input {
 
 body.dark-mode .chatbot-disclaimer {
     color: var(--dark-placeholder);
->>>>>>> develop
 }
 
 @media (max-width: 480px) {
@@ -1430,17 +1301,12 @@ body.dark-mode header[data-site-header] a[aria-label="Miskylac, inicio"] > span:
 body.dark-mode input:focus,
 body.dark-mode select:focus,
 body.dark-mode textarea:focus {
-<<<<<<< HEAD
-    border-color: #5aa86a;
-    box-shadow: 0 0 0 3px rgba(90, 168, 106, 0.3);
-=======
     border-color: var(--dark-focus);
     box-shadow: 0 0 0 3px var(--dark-focus-ring);
 }
 
 body.dark-mode .form-control:focus {
     background: var(--dark-input-surface);
->>>>>>> develop
 }
 
 @media (prefers-reduced-motion: reduce) {

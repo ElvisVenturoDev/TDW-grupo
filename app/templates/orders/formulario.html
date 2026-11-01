@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "shared/_flash.html" import mensajes_flash %}
 
 {% block title %}Hacer un pedido | Santa Clara{% endblock %}
 {% block meta_description %}Completa tu pedido de productos lácteos naturales de Santa Clara y coordina la entrega con nuestro equipo.{% endblock %}
@@ -8,11 +9,7 @@
 {% set prod_sel = producto_seleccionado or datos.get('producto', '') %}
 
 <section class="relative isolate overflow-hidden bg-navy py-20" aria-labelledby="order-title">
-<<<<<<< HEAD
-    <img class="absolute inset-0 -z-20 h-full w-full object-cover" src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=2000&q=88" alt="Productos lácteos artesanales" width="2000" height="1000">
-=======
     <img class="absolute inset-0 -z-20 h-full w-full object-cover" src="{{ url_for('static', filename='img/img1_productos.avif') }}" alt="Productos lácteos artesanales" width="2000" height="1000">
->>>>>>> develop
     <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy via-navy/85 to-navy/30"></div>
 
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -33,23 +30,7 @@
                 <p class="mt-3 text-sm leading-6 text-slate-500" data-i18n="order.requiredFields">Los campos marcados con un asterisco son obligatorios.</p>
             </div>
 
-            {% with mensajes = get_flashed_messages(category_filter=["error"]) %}
-              {% if mensajes %}
-              <div class="mt-6 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700" role="alert">
-                <ul class="list-disc space-y-1 pl-5">
-                  {% for m in mensajes %}<li>{{ m }}</li>{% endfor %}
-                </ul>
-              </div>
-              {% endif %}
-            {% endwith %}
-
-            {% with exitos = get_flashed_messages(category_filter=["ok"]) %}
-              {% if exitos %}
-              <div class="mt-6 rounded-xl border border-green-200 bg-green-50 p-4 text-sm font-semibold text-green-800" role="status">
-                {% for m in exitos %}{{ m }}{% endfor %}
-              </div>
-              {% endif %}
-            {% endwith %}
+            {{ mensajes_flash("error", "mt-6") }}
 
             <form id="form-pedido" method="post" action="{{ url_for('formulario.formulario') }}" class="mt-7 space-y-6">
                 <fieldset>
@@ -62,11 +43,7 @@
                                    title="Mínimo 3 letras. Solo letras y espacios."
                                    value="{{ datos.get('nombre', '') }}"
                                    autocomplete="name" placeholder="Escribe tu nombre"
-<<<<<<< HEAD
-                                   class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">
-=======
                                    class="mt-2 form-control form-control--soft">
->>>>>>> develop
                         </label>
                         <label class="block text-xs font-bold text-navy">
                             Teléfono / WhatsApp *
@@ -75,11 +52,7 @@
                                    title="9 dígitos y empieza con 9. Ej: 987123654"
                                    value="{{ datos.get('telefono', '') }}"
                                    autocomplete="tel" placeholder="987123654"
-<<<<<<< HEAD
-                                   class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">
-=======
                                    class="mt-2 form-control form-control--soft">
->>>>>>> develop
                         </label>
                     </div>
                     <label class="mt-5 block text-xs font-bold text-navy">
@@ -89,11 +62,7 @@
                                title="Solo minúsculas y un dominio como @gmail.com o @gmail.com.pe"
                                value="{{ datos.get('correo', '') }}"
                                autocomplete="email" placeholder="tucorreo@gmail.com"
-<<<<<<< HEAD
-                               class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">
-=======
                                class="mt-2 form-control form-control--soft">
->>>>>>> develop
                     </label>
                 </fieldset>
 
@@ -116,11 +85,7 @@
                     <div id="individual-product-section" class="mt-4 grid gap-5 sm:grid-cols-[1fr_150px]">
                         <label class="block text-xs font-bold text-navy">
                             Producto *
-<<<<<<< HEAD
-                            <select name="producto" required class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal text-navy outline-none transition focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">
-=======
                             <select name="producto" required class="mt-2 form-control form-control--soft">
->>>>>>> develop
                                 <option value="">Selecciona un producto</option>
                                 {% for product in products %}
                                 <option value="{{ product.name }}" data-price="{{ '%.2f' | format(product.price) }}"{% if prod_sel == product.name %} selected{% endif %}>{{ product.name }} — {{ product.detail }}</option>
@@ -131,11 +96,7 @@
                             Cantidad *
                             <input type="number" name="cantidad" required min="1" step="1"
                                    value="{{ datos.get('cantidad', 0) }}" inputmode="numeric"
-<<<<<<< HEAD
-                                   class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-center text-sm font-normal outline-none transition focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">
-=======
                                    class="mt-2 form-control form-control--soft text-center">
->>>>>>> develop
                         </label>
                     </div>
                     <p class="mt-3 text-xs leading-5 text-slate-500">Si necesitas varios productos, agrégalos al carrito o escríbenos por WhatsApp.</p>
@@ -177,32 +138,20 @@
                             <input type="text" name="distrito" maxlength="60"
                                    value="{{ datos.get('distrito', '') }}"
                                    autocomplete="address-level2" placeholder="Ej. Santa Clara"
-<<<<<<< HEAD
-                                   class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10 disabled:cursor-not-allowed disabled:opacity-50">
-=======
                                    class="mt-2 form-control form-control--soft disabled:cursor-not-allowed disabled:opacity-50">
->>>>>>> develop
                         </label>
                         <label class="block text-xs font-bold text-navy">
                             Dirección de entrega *
                             <input type="text" name="direccion" maxlength="120"
                                    value="{{ datos.get('direccion', '') }}"
                                    autocomplete="street-address" placeholder="Calle, número y referencia"
-<<<<<<< HEAD
-                                   class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10 disabled:cursor-not-allowed disabled:opacity-50">
-=======
                                    class="mt-2 form-control form-control--soft disabled:cursor-not-allowed disabled:opacity-50">
->>>>>>> develop
                         </label>
                     </div>
 
                     <label class="mt-5 block text-xs font-bold text-navy">
                         Comentarios
-<<<<<<< HEAD
-                        <textarea name="comentarios" rows="4" maxlength="300" placeholder="Indica el día, la hora o cualquier detalle adicional." class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-normal outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">{{ datos.get('comentarios', '') }}</textarea>
-=======
                         <textarea name="comentarios" rows="4" maxlength="300" placeholder="Indica el día, la hora o cualquier detalle adicional." class="mt-2 form-control form-control--soft form-control--roomy">{{ datos.get('comentarios', '') }}</textarea>
->>>>>>> develop
                     </label>
                 </fieldset>
 
@@ -246,6 +195,7 @@
 {% endblock %}
 
 {% block scripts %}
+<script defer src="{{ url_for('static', filename='js/order-summary.js', v='order-1') }}"></script>
 <script>
 (() => {
   const form = document.getElementById('form-pedido');

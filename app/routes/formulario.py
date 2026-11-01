@@ -26,17 +26,6 @@ CORREO_RE = re.compile(
 ENTREGAS_VALIDAS = ("entrega_domicilio", "recogida")
 
 
-def _producto_attr(producto, clave, defecto=None):
-    """Lee un dato del producto venga como diccionario u objeto."""
-    if isinstance(producto, dict):
-        return producto.get(clave, defecto)
-    return getattr(producto, clave, defecto)
-
-
-def _nombre_producto(p):
-    return _producto_attr(p, "name", "")
-
-
 def _productos_validos():
     from app.routes.productos import productos_con_mysql
 
@@ -138,24 +127,20 @@ def _items_del_pedido(f):
 
 
 def _guardar_detalle(cur, id_cliente, direccion, distrito, actualizar):
-    if actualizar:
-        cur.execute(
-            "INSERT INTO detalle_cliente "
-            "(identificador_cliente, direccion, distrito, tipo_cliente, fecha_registro) "
-            "VALUES (%s, %s, %s, %s, %s) "
-            "ON DUPLICATE KEY UPDATE "
-            "direccion = VALUES(direccion), distrito = VALUES(distrito), "
-            "tipo_cliente = VALUES(tipo_cliente), actualizado_en = CURRENT_TIMESTAMP",
-            (id_cliente, direccion, distrito, "Minorista", date.today()),
-        )
-    else:
-        cur.execute(
-            "INSERT INTO detalle_cliente "
-            "(identificador_cliente, direccion, distrito, tipo_cliente, fecha_registro) "
-            "VALUES (%s, %s, %s, %s, %s) "
-            "ON DUPLICATE KEY UPDATE actualizado_en = CURRENT_TIMESTAMP",
-            (id_cliente, direccion, distrito, "Minorista", date.today()),
-        )
+    """Crea o actualiza el detalle del cliente con una sola sentencia SQL."""
+    al_duplicado = (
+        "direccion = VALUES(direccion), distrito = VALUES(distrito), "
+        "tipo_cliente = VALUES(tipo_cliente), actualizado_en = CURRENT_TIMESTAMP"
+        if actualizar
+        else "actualizado_en = CURRENT_TIMESTAMP"
+    )
+    cur.execute(
+        "INSERT INTO detalle_cliente "
+        "(identificador_cliente, direccion, distrito, tipo_cliente, fecha_registro) "
+        "VALUES (%s, %s, %s, %s, %s) "
+        "ON DUPLICATE KEY UPDATE " + al_duplicado,
+        (id_cliente, direccion, distrito, "Minorista", date.today()),
+    )
 
 
 def guardar_pedido(f):
@@ -262,7 +247,7 @@ def guardar_pedido(f):
 
                 if not prod:
                     producto_catalogo = next(
-                        (p for p in PRODUCTS if _nombre_producto(p) == nombre_prod),
+                        (p for p in PRODUCTS if p["name"] == nombre_prod),
                         None,
                     )
                     if not producto_catalogo:
@@ -270,18 +255,18 @@ def guardar_pedido(f):
                             f"El producto «{nombre_prod}» no está disponible en el catálogo."
                         )
 
-                    categoria = (_producto_attr(producto_catalogo, "category", "otros") or "otros")[:50]
-                    detalle = (_producto_attr(producto_catalogo, "detail", "") or "")[:80] or None
-                    descripcion = _producto_attr(producto_catalogo, "description", None)
-                    imagen_url = _producto_attr(producto_catalogo, "image", None)
-                    precio = _producto_attr(producto_catalogo, "price", 0)
+                    categoria = (producto_catalogo.get("category") or "otros")[:50]
+                    detalle = (producto_catalogo.get("detail") or "")[:80] or None
+                    descripcion = producto_catalogo.get("description")
+                    imagen_url = producto_catalogo.get("image")
+                    precio = producto_catalogo.get("price", 0)
 
                     cur.execute(
                         "INSERT INTO producto "
                         "(nombre, categoria, detalle, descripcion, precio, imagen_url) "
                         "VALUES (%s, %s, %s, %s, %s, %s)",
                         (
-                            _nombre_producto(producto_catalogo),
+                            producto_catalogo["name"],
                             categoria,
                             detalle,
                             descripcion,

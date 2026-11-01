@@ -1,0 +1,19 @@
+{#
+  Bloque único para mostrar mensajes flash.
+  Uso: {{ mensajes_flash("error") }} o {{ mensajes_flash("ok", "mt-6") }}
+  Antes este mismo bloque estaba copiado en login, registro y formulario.
+#}
+{% macro mensajes_flash(categoria="error", clases="mt-5") %}
+{% with mensajes = get_flashed_messages(category_filter=[categoria]) %}
+  {% if mensajes %}
+  <div class="{{ clases }} rounded-xl border p-4 text-sm {% if categoria == 'ok' %}border-emerald-200 bg-emerald-50 font-semibold text-emerald-800{% else %}border-red-200 bg-red-50 text-red-700{% endif %}"
+       role="{{ 'status' if categoria == 'ok' else 'alert' }}">
+    {% if mensajes | length > 1 %}
+    <ul class="list-disc space-y-1 pl-5">{% for m in mensajes %}<li>{{ m }}</li>{% endfor %}</ul>
+    {% else %}
+    {{ mensajes[0] }}
+    {% endif %}
+  </div>
+  {% endif %}
+{% endwith %}
+{% endmacro %}

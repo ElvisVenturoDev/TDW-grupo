@@ -1,0 +1,62 @@
+{#
+  Tarjeta de producto reutilizable.
+
+  variante="destacado" -> tarjeta de la portada (sin precio, con enlace "Pedir ahora")
+  variante="catalogo"  -> tarjeta del catálogo (con precio, favoritos y botón grande)
+
+  Antes este bloque estaba escrito dos veces (home/index.html y
+  products/productos.html); cualquier cambio había que hacerlo en ambos.
+#}
+{% macro producto_card(product, variante="catalogo") %}
+{% set es_catalogo = variante == "catalogo" %}
+<article class="{% if es_catalogo %}catalog-card group relative overflow-hidden rounded-2xl border bg-white{% else %}group overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-xl{% endif %}"
+         {% if es_catalogo %}data-catalog-card data-product-id="{{ product.id }}" data-category="{{ product.category }}" data-name="{{ product.name }}" data-price="{{ product.price }}"{% else %}data-featured-card{% endif %}>
+    {% if es_catalogo %}
+    <button type="button" class="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-xl text-slate-500 shadow-md transition hover:text-rose-500"
+            data-favorite aria-pressed="false" aria-label="Añadir {{ product.name }} a favoritos">
+        <span data-favorite-icon aria-hidden="true">&#9825;</span>
+    </button>
+    {% endif %}
+
+    <div class="aspect-[4/3] overflow-hidden bg-cream">
+        <img class="h-full w-full object-cover{% if not es_catalogo %} transition-transform duration-500 ease-out group-hover:scale-105{% endif %}"
+             src="{{ product.image }}" alt="{{ product.alt }}" width="600" height="450" loading="lazy">
+    </div>
+
+    <div class="p-5">
+        <p class="{% if es_catalogo %}product-category {% endif %}text-[10px] font-bold uppercase tracking-[0.18em]{% if not es_catalogo %} text-field{% endif %}">{{ product.category }}</p>
+        <h3 class="mt-2 font-display text-xl font-semibold text-navy{% if not es_catalogo %} transition-colors duration-300 group-hover:text-field{% endif %}">{{ product.name }}</h3>
+
+        {% if es_catalogo %}
+        <div class="mt-2 flex items-center justify-between gap-3">
+            <p class="text-sm text-slate-500">{{ product.detail }}</p>
+            <strong class="product-price text-sm">S/ {{ '%.2f' | format(product.price) }}</strong>
+        </div>
+        <button type="button" data-add-to-cart
+                data-product-id="{{ product.id }}" data-product-name="{{ product.name }}"
+                data-product-detail="{{ product.detail }}" data-product-price="{{ product.price }}"
+                data-product-image="{{ product.image }}"
+                class="product-order-link mt-5 flex w-full items-center justify-center rounded-full px-4 py-2.5 text-xs font-bold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
+            <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <span data-i18n="catalog.addToCart">Agregar al carrito</span>
+        </button>
+        {% else %}
+        <p class="mt-1 text-sm text-slate-500">{{ product.detail }}</p>
+        <div class="mt-4 flex items-center justify-between gap-3">
+            <a href="{{ url_for('formulario.formulario', producto=product.name) }}"
+               class="inline-flex items-center gap-2 text-xs font-bold text-navy transition-colors duration-300 hover:text-field">
+                Pedir ahora <span aria-hidden="true">&rarr;</span>
+            </a>
+            <button type="button" data-add-to-cart data-quick-add
+                    data-product-id="{{ product.id }}" data-product-name="{{ product.name }}"
+                    data-product-detail="{{ product.detail }}" data-product-price="{{ product.price }}"
+                    data-product-image="{{ product.image }}"
+                    class="product-order-link flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                    aria-label="Agregar {{ product.name }} al carrito" title="Agregar al carrito">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+</article>
+{% endmacro %}

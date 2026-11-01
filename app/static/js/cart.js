@@ -10,7 +10,8 @@ const Cart = (() => {
 
     // ---------- Utilidades ----------
 
-    const formatPrice = (amount) => `S/ ${amount.toFixed(2)}`;
+    // Utilidades compartidas (definidas en core.js).
+    const { storage, formatPrice } = Miskylac;
 
     // En móvil el panel se comporta como "hoja inferior"; en escritorio sigue siendo
     // una tarjeta flotante. `lg` de Tailwind equivale a 1024px.
@@ -18,31 +19,18 @@ const Cart = (() => {
         typeof window.matchMedia === "function" &&
         window.matchMedia("(max-width: 1023px)").matches;
 
-    const addedMessage = () => {
-        let lang = "es";
-        try {
-            lang = localStorage.getItem("santaclara-language") || "es";
-        } catch {
-            // Si el almacenamiento está bloqueado se usa el idioma por defecto.
-        }
-        return lang === "en" ? "Added to cart" : "Producto agregado al carrito";
-    };
+    const addedMessage = () =>
+        storage.get("santaclara-language", "es") === "en"
+            ? "Added to cart"
+            : "Producto agregado al carrito";
 
     const readCart = () => {
-        try {
-            const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-            return Array.isArray(stored) ? stored : [];
-        } catch {
-            return [];
-        }
+        const stored = storage.getJSON(STORAGE_KEY, []);
+        return Array.isArray(stored) ? stored : [];
     };
 
     const saveCart = (items) => {
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-        } catch {
-            // El carrito sigue funcionando en memoria si el navegador bloquea el almacenamiento.
-        }
+        storage.setJSON(STORAGE_KEY, items);
         notify();
     };
 
@@ -197,8 +185,7 @@ const Cart = (() => {
 
     // ---------- Animación "vuela al carrito" ----------
 
-    const prefersReducedMotion = () =>
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = Miskylac.prefersReducedMotion;
 
     const getCartTarget = () => {
         const candidates = [
