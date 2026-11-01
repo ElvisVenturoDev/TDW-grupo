@@ -5,7 +5,11 @@
 
 {% block content %}
 <section class="relative isolate overflow-hidden bg-cream py-20 sm:py-24" aria-labelledby="products-title">
+<<<<<<< HEAD
     <img data-parallax class="absolute inset-0 -z-20 h-full w-full object-cover" src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=2000&q=88" alt="Campo con productos lácteos" width="2000" height="1000">
+=======
+    <img data-parallax class="absolute inset-0 -z-20 h-full w-full object-cover" src="{{ url_for('static', filename='img/verduras_carrusel.avif') }}" alt="Campo con productos lácteos" width="2000" height="1000">
+>>>>>>> develop
     <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy via-navy/80 to-navy/20"></div>
 
     <div class="mx-auto max-w-7xl px-6 text-white lg:px-8">
@@ -31,12 +35,20 @@
             <label class="relative block">
                 <span class="sr-only" data-i18n="catalog.searchLabel">Buscar productos</span>
                 <svg class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg>
+<<<<<<< HEAD
                 <input id="product-search" type="search" placeholder="Buscar por nombre..." data-i18n-placeholder="catalog.searchPlaceholder" class="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-12 pr-4 text-sm text-navy outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10" autocomplete="off">
+=======
+                <input id="product-search" type="search" placeholder="Buscar por nombre..." data-i18n-placeholder="catalog.searchPlaceholder" class="form-control form-control--soft form-control--search" autocomplete="off">
+>>>>>>> develop
             </label>
 
             <label>
                 <span class="sr-only" data-i18n="catalog.categoryLabel">Filtrar por categoría</span>
+<<<<<<< HEAD
                 <select id="category-filter" class="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm text-navy outline-none transition focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">
+=======
+                <select id="category-filter" class="form-control form-control--soft">
+>>>>>>> develop
                     <option value="all" data-i18n="catalog.allCategories">Todas las categorías</option>
                     <option value="leche" data-i18n="catalog.milk">Leche</option>
                     <option value="yogurt" data-i18n="catalog.yogurt">Yogurt</option>
@@ -49,7 +61,11 @@
 
             <label>
                 <span class="sr-only" data-i18n="catalog.sortLabel">Ordenar productos</span>
+<<<<<<< HEAD
                 <select id="sort-products" class="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm text-navy outline-none transition focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">
+=======
+                <select id="sort-products" class="form-control form-control--soft">
+>>>>>>> develop
                     <option value="featured" data-i18n="catalog.sortFeatured">Destacados</option>
                     <option value="name" data-i18n="catalog.sortName">Nombre A–Z</option>
                     <option value="price" data-i18n="catalog.sortPriceAsc">Menor precio</option>
