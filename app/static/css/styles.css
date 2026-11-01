@@ -1,7 +1,6 @@
 @theme {
-    /* Tipografía: Plus Jakarta Sans (UI) + Playfair Display (títulos).
-       "DM Sans" queda como reserva cargada en la plantilla. */
-    --font-sans: "Plus Jakarta Sans", "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    /* Tipografía: Plus Jakarta Sans (UI) + Playfair Display (títulos). */
+    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
     --font-display: "Playfair Display", ui-serif, Georgia, serif;
 
     /* Paleta de marca: navy profundo + verde natural + superficies CÁLIDAS.
@@ -54,6 +53,28 @@
 }
 
 :root {
+    --dark-background: #0c1a2b;
+    --dark-surface: #132437;
+    --dark-surface-muted: #1b3047;
+    --dark-surface-hover: #24384f;
+    --dark-border: #2c4661;
+    --dark-text: #e6edf5;
+    --dark-text-heading: #dbeafe;
+    --dark-text-muted: #b8c7da;
+    --dark-text-accent: #a9d7b4;
+    --dark-text-positive: #d1fae5;
+    --dark-category-surface: #24382a;
+    --dark-category-text: #cbe3a8;
+    --dark-price-surface: #3a2f1a;
+    --dark-price-text: #fde68a;
+    --dark-input-surface: #0f2033;
+    --dark-placeholder: #8ea2ba;
+    --dark-focus: #5aa86a;
+    --dark-focus-ring: rgba(90, 168, 106, 0.3);
+    --dark-catalog-start: #0f2438;
+    --dark-catalog-end: #1b2b1f;
+    --dark-chat-text: #e2e8f0;
+
     /* Tokens de movimiento reutilizables. */
     --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
     /* Salida "expo": arranca rápido y asienta suave. Ideal para entradas y reveals. */
@@ -141,6 +162,52 @@
     }
 }
 
+/* ===== Componentes reutilizables ===== */
+
+@layer components {
+    .form-control {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        height: 3rem;
+        padding: 0 1rem;
+        border: 1px solid var(--color-slate-300);
+        border-radius: var(--radius-xl);
+        background: #fff;
+        color: inherit;
+        font-size: 0.875rem;
+        font-weight: 400;
+    }
+
+    .form-control::placeholder {
+        color: var(--color-slate-500);
+    }
+
+    .form-control--soft {
+        border-color: var(--color-slate-200);
+        background: var(--color-slate-50);
+        color: var(--color-navy);
+    }
+
+    .form-control--soft:focus {
+        background: #fff;
+    }
+
+    .form-control--search {
+        padding-left: 3rem;
+    }
+
+    textarea.form-control {
+        height: auto;
+        padding-block: 0.625rem;
+        resize: vertical;
+    }
+
+    textarea.form-control--roomy {
+        padding-block: 0.75rem;
+    }
+}
+
 /* Transición de color compartida para que el cambio de tema no sea brusco. */
 #mobile-nav,
 #cart-panel,
@@ -171,8 +238,8 @@ header[data-site-header].is-scrolled {
 /* ===== Modo oscuro ===== */
 
 body.dark-mode {
-    background: #0c1a2b;
-    color: #e6edf5;
+    background: var(--dark-background);
+    color: var(--dark-text);
     color-scheme: dark;
 }
 
@@ -183,7 +250,7 @@ body.dark-mode header,
 body.dark-mode #mobile-nav,
 body.dark-mode #cart-panel,
 body.dark-mode .catalog-toolbar {
-    background-color: #132437;
+    background-color: var(--dark-surface);
 }
 
 body.dark-mode .bg-slate-50,
@@ -195,24 +262,24 @@ body.dark-mode .bg-emerald-50,
 body.dark-mode .bg-emerald-100,
 body.dark-mode .bg-sky-100,
 body.dark-mode .bg-amber-100 {
-    background-color: #1b3047;
+    background-color: var(--dark-surface-muted);
 }
 
 body.dark-mode .catalog-section {
-    background: linear-gradient(180deg, #0f2438 0%, #1b2b1f 100%);
+    background: linear-gradient(180deg, var(--dark-catalog-start) 0%, var(--dark-catalog-end) 100%);
 }
 
 body.dark-mode .catalog-section #catalog-title,
 body.dark-mode .text-navy,
 body.dark-mode .text-ink,
 body.dark-mode .text-slate-800 {
-    color: #dbeafe;
+    color: var(--dark-text-heading);
 }
 
 body.dark-mode .text-slate-500,
 body.dark-mode .text-slate-600,
 body.dark-mode .text-slate-700 {
-    color: #b8c7da;
+    color: var(--dark-text-muted);
 }
 
 body.dark-mode .text-field,
@@ -220,7 +287,7 @@ body.dark-mode .text-field-dark,
 body.dark-mode .text-emerald-800,
 body.dark-mode .text-sky-700,
 body.dark-mode .text-amber-700 {
-    color: #a9d7b4;
+    color: var(--dark-text-accent);
 }
 
 body.dark-mode .border-slate-100,
@@ -228,48 +295,48 @@ body.dark-mode .border-slate-200,
 body.dark-mode .border-slate-300,
 body.dark-mode [data-catalog-card],
 body.dark-mode [data-featured-card] {
-    border-color: #2c4661;
+    border-color: var(--dark-border);
 }
 
 body.dark-mode .catalog-count,
 body.dark-mode .catalog-empty {
-    border-color: #2c4661;
-    background: #132437;
-    color: #d1fae5;
+    border-color: var(--dark-border);
+    background: var(--dark-surface);
+    color: var(--dark-text-positive);
 }
 
 body.dark-mode .product-category {
-    background: #24382a;
-    color: #cbe3a8;
+    background: var(--dark-category-surface);
+    color: var(--dark-category-text);
 }
 
 body.dark-mode .product-price {
-    background: #3a2f1a;
-    color: #fde68a;
+    background: var(--dark-price-surface);
+    color: var(--dark-price-text);
 }
 
 body.dark-mode input,
 body.dark-mode select,
 body.dark-mode textarea {
-    border-color: #2c4661;
-    background-color: #0f2033;
-    color: #e6edf5;
+    border-color: var(--dark-border);
+    background-color: var(--dark-input-surface);
+    color: var(--dark-text);
 }
 
 body.dark-mode input::placeholder,
 body.dark-mode textarea::placeholder {
-    color: #8ea2ba;
+    color: var(--dark-placeholder);
 }
 
 body.dark-mode [class~="hover:bg-slate-50"]:hover,
 body.dark-mode [class~="hover:bg-slate-100"]:hover {
-    background-color: #24384f;
+    background-color: var(--dark-surface-hover);
 }
 
 body.dark-mode #toastContainer > div {
-    border-color: #2c4661;
-    background-color: #132437;
-    color: #e6edf5;
+    border-color: var(--dark-border);
+    background-color: var(--dark-surface);
+    color: var(--dark-text);
 }
 
 body.dark-mode header[data-site-header].is-scrolled {
@@ -499,14 +566,6 @@ body.dark-mode header[data-site-header].is-scrolled {
 
 [data-favorite]:active {
     scale: 0.9;
-}
-
-[data-category-tabs] [data-category] {
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease,
-        border-color 0.3s ease,
-        transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 [data-category-tabs] [data-category]:hover {
@@ -784,40 +843,40 @@ body.dark-mode header[data-site-header].is-scrolled {
 }
 
 body.dark-mode .chatbot-panel {
-    border-color: #2c4661;
-    background: #132437;
-    color: #e6edf5;
+    border-color: var(--dark-border);
+    background: var(--dark-surface);
+    color: var(--dark-text);
 }
 
 body.dark-mode .chatbot-message--assistant {
-    border-color: #2c4661;
-    background: #1b3047;
-    color: #e2e8f0;
+    border-color: var(--dark-border);
+    background: var(--dark-surface-muted);
+    color: var(--dark-chat-text);
 }
 
 body.dark-mode .chatbot-message a {
-    background: #24384f;
-    color: #dbeafe;
+    background: var(--dark-surface-hover);
+    color: var(--dark-text-heading);
 }
 
 body.dark-mode .chatbot-suggestions button {
-    border-color: #2c4661;
-    background: #1b3047;
-    color: #d1fae5;
+    border-color: var(--dark-border);
+    background: var(--dark-surface-muted);
+    color: var(--dark-text-positive);
 }
 
 body.dark-mode .chatbot-form {
-    border-color: #2c4661;
+    border-color: var(--dark-border);
 }
 
 body.dark-mode .chatbot-form input {
-    border-color: #2c4661;
-    background: #0f2033;
-    color: #e6edf5;
+    border-color: var(--dark-border);
+    background: var(--dark-input-surface);
+    color: var(--dark-text);
 }
 
 body.dark-mode .chatbot-disclaimer {
-    color: #8ea2ba;
+    color: var(--dark-placeholder);
 }
 
 @media (max-width: 480px) {
@@ -1242,8 +1301,12 @@ body.dark-mode header[data-site-header] a[aria-label="Miskylac, inicio"] > span:
 body.dark-mode input:focus,
 body.dark-mode select:focus,
 body.dark-mode textarea:focus {
-    border-color: #5aa86a;
-    box-shadow: 0 0 0 3px rgba(90, 168, 106, 0.3);
+    border-color: var(--dark-focus);
+    box-shadow: 0 0 0 3px var(--dark-focus-ring);
+}
+
+body.dark-mode .form-control:focus {
+    background: var(--dark-input-surface);
 }
 
 @media (prefers-reduced-motion: reduce) {
