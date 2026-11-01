@@ -58,7 +58,7 @@
                                    title="Mínimo 3 letras. Solo letras y espacios."
                                    value="{{ datos.get('nombre', '') }}"
                                    autocomplete="name" placeholder="Escribe tu nombre"
-                                   class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">
+                                   class="mt-2 form-control form-control--soft">
                         </label>
                         <label class="block text-xs font-bold text-navy">
                             Teléfono / WhatsApp *
@@ -67,7 +67,7 @@
                                    title="9 dígitos y empieza con 9. Ej: 987123654"
                                    value="{{ datos.get('telefono', '') }}"
                                    autocomplete="tel" placeholder="987123654"
-                                   class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">
+                                   class="mt-2 form-control form-control--soft">
                         </label>
                     </div>
                     <label class="mt-5 block text-xs font-bold text-navy">
@@ -77,7 +77,7 @@
                                title="Solo minúsculas y un dominio como @gmail.com o @gmail.com.pe"
                                value="{{ datos.get('correo', '') }}"
                                autocomplete="email" placeholder="tucorreo@gmail.com"
-                               class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">
+                               class="mt-2 form-control form-control--soft">
                     </label>
                 </fieldset>
 
@@ -100,7 +100,7 @@
                     <div id="individual-product-section" class="mt-4 grid gap-5 sm:grid-cols-[1fr_150px]">
                         <label class="block text-xs font-bold text-navy">
                             Producto *
-                            <select name="producto" required class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal text-navy outline-none transition focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">
+                            <select name="producto" required class="mt-2 form-control form-control--soft">
                                 <option value="">Selecciona un producto</option>
                                 {% for product in products %}
                                 <option value="{{ product.name }}" data-price="{{ '%.2f' | format(product.price) }}"{% if prod_sel == product.name %} selected{% endif %}>{{ product.name }} — {{ product.detail }}</option>
@@ -111,7 +111,7 @@
                             Cantidad *
                             <input type="number" name="cantidad" required min="1" step="1"
                                    value="{{ datos.get('cantidad', 0) }}" inputmode="numeric"
-                                   class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-center text-sm font-normal outline-none transition focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">
+                                   class="mt-2 form-control form-control--soft text-center">
                         </label>
                     </div>
                     <p class="mt-3 text-xs leading-5 text-slate-500">Si necesitas varios productos, agrégalos al carrito o escríbenos por WhatsApp.</p>
@@ -153,20 +153,20 @@
                             <input type="text" name="distrito" maxlength="60"
                                    value="{{ datos.get('distrito', '') }}"
                                    autocomplete="address-level2" placeholder="Ej. Santa Clara"
-                                   class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10 disabled:cursor-not-allowed disabled:opacity-50">
+                                   class="mt-2 form-control form-control--soft disabled:cursor-not-allowed disabled:opacity-50">
                         </label>
                         <label class="block text-xs font-bold text-navy">
                             Dirección de entrega *
                             <input type="text" name="direccion" maxlength="120"
                                    value="{{ datos.get('direccion', '') }}"
                                    autocomplete="street-address" placeholder="Calle, número y referencia"
-                                   class="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10 disabled:cursor-not-allowed disabled:opacity-50">
+                                   class="mt-2 form-control form-control--soft disabled:cursor-not-allowed disabled:opacity-50">
                         </label>
                     </div>
 
                     <label class="mt-5 block text-xs font-bold text-navy">
                         Comentarios
-                        <textarea name="comentarios" rows="4" maxlength="300" placeholder="Indica el día, la hora o cualquier detalle adicional." class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-normal outline-none transition placeholder:text-slate-500 focus:border-field focus:bg-white focus:ring-4 focus:ring-field/10">{{ datos.get('comentarios', '') }}</textarea>
+                        <textarea name="comentarios" rows="4" maxlength="300" placeholder="Indica el día, la hora o cualquier detalle adicional." class="mt-2 form-control form-control--soft form-control--roomy">{{ datos.get('comentarios', '') }}</textarea>
                     </label>
                 </fieldset>
 

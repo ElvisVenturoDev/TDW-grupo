@@ -21,11 +21,11 @@
     <form method="post" action="{{ url_for('login.login') }}" class="mt-6 space-y-4 rounded-2xl border border-slate-100 bg-white p-7 shadow-sm">
         <label class="block text-xs font-semibold">
             <span>Correo *</span>
-            <input type="email" name="correo" autocomplete="email" value="{{ datos.get('correo', '') }}" required class="mt-2 block h-12 w-full rounded-xl border border-slate-300 px-4 text-sm font-normal outline-none focus:border-field focus:ring-2 focus:ring-field/20">
+            <input type="email" name="correo" autocomplete="email" value="{{ datos.get('correo', '') }}" required class="mt-2 form-control">
         </label>
         <label class="block text-xs font-semibold">
             <span>Contraseña *</span>
-            <input type="password" name="password" autocomplete="current-password" required class="mt-2 block h-12 w-full rounded-xl border border-slate-300 px-4 text-sm font-normal outline-none focus:border-field focus:ring-2 focus:ring-field/20">
+            <input type="password" name="password" autocomplete="current-password" required class="mt-2 form-control">
         </label>
         <button class="w-full rounded-full bg-navy py-3 text-sm font-bold text-white hover:bg-navy-dark" type="submit">Ingresar</button>
     </form>
