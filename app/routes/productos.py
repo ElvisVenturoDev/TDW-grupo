@@ -2,17 +2,12 @@ from flask import Blueprint, render_template
 
 from app.catalog import PRODUCTS
 from app.db import query
+from app.images import CATEGORY_IMAGES as IMAGENES
+from app.images import DEFAULT_PRODUCT_IMAGE as IMAGEN_DEFECTO
 
 productos_bp = Blueprint("productos", __name__)
 
 CATEGORIAS_WEB = {"leche", "yogurt", "queso", "mantequilla", "crema"}
-
-IMAGENES = {
-    "leche": "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=900&q=85",
-    "yogurt": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85",
-    "queso": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=900&q=85",
-}
-IMAGEN_DEFECTO = IMAGENES["leche"]
 
 
 def productos_con_mysql():
@@ -63,8 +58,12 @@ def productos_con_mysql():
             p["detail"] = fila["detalle"]
         if fila.get("descripcion"):
             p["description"] = fila["descripcion"]
-        if fila.get("imagen_url"):
-            p["image"] = fila["imagen_url"]
+        # La foto local del catálogo tiene prioridad. Solo se respeta la
+        # imagen guardada en MySQL si también es un archivo local (no una URL
+        # externa antigua de Unsplash).
+        imagen_db = (fila.get("imagen_url") or "").strip()
+        if imagen_db.startswith("/static/"):
+            p["image"] = imagen_db
         visibles.append(p)
 
     productos = visibles
@@ -96,7 +95,12 @@ def productos_con_mysql():
                 "stock": stock,
                 "stock_minimo": int(f["stock_minimo"] or 0),
                 "agotado": stock <= 0,
-                "image": f.get("imagen_url") or IMAGENES.get(categoria, IMAGEN_DEFECTO),
+                # Igual que arriba: se ignoran URLs externas antiguas de MySQL.
+                "image": (
+                    f["imagen_url"]
+                    if (f.get("imagen_url") or "").strip().startswith("/static/")
+                    else IMAGENES.get(categoria, IMAGEN_DEFECTO)
+                ),
                 "alt": f["nombre"],
             }
         )

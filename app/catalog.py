@@ -1,3 +1,5 @@
+from app.images import product_image
+
 PRODUCTS = [
     {
         "id": "leche-entera-fresca",
@@ -7,7 +9,7 @@ PRODUCTS = [
         "price": 6.50,
         "featured": True,
         "rating": 4.8,
-        "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=900&q=85",
+        "image": product_image("leche-entera-fresca"),
         "alt": "Botella de leche entera fresca",
     },
     {
@@ -18,7 +20,7 @@ PRODUCTS = [
         "price": 6.90,
         "featured": False,
         "rating": 4.5,
-        "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=900&q=85",
+        "image": product_image("leche-semidescremada"),
         "alt": "Botella de leche semidescremada",
     },
     {
@@ -29,7 +31,7 @@ PRODUCTS = [
         "price": 6.70,
         "featured": False,
         "rating": 4.4,
-        "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=900&q=85",
+        "image": product_image("leche-descremada"),
         "alt": "Botella de leche descremada",
     },
     {
@@ -40,7 +42,7 @@ PRODUCTS = [
         "price": 3.80,
         "featured": True,
         "rating": 4.9,
-        "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85",
+        "image": product_image("yogurt-natural"),
         "alt": "Yogurt natural cremoso",
     },
     {
@@ -51,7 +53,7 @@ PRODUCTS = [
         "price": 4.20,
         "featured": True,
         "rating": 4.7,
-        "image": "https://images.unsplash.com/photo-1571212515416-fef01fc43637?auto=format&fit=crop&w=900&q=85",
+        "image": product_image("yogurt-frutilla"),
         "alt": "Yogurt de frutilla con fruta",
     },
     {
@@ -62,7 +64,7 @@ PRODUCTS = [
         "price": 4.80,
         "featured": False,
         "rating": 4.3,
-        "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85",
+        "image": product_image("yogurt-mermelada"),
         "alt": "Yogurt con mermelada de frutas",
     },
     {
@@ -73,7 +75,7 @@ PRODUCTS = [
         "price": 12.50,
         "featured": False,
         "rating": 4.6,
-        "image": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=900&q=85",
+        "image": product_image("queso-fresco"),
         "alt": "Queso fresco artesanal en bloque",
     },
     {
@@ -84,7 +86,7 @@ PRODUCTS = [
         "price": 16.90,
         "featured": True,
         "rating": 4.9,
-        "image": "https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=900&q=85",
+        "image": product_image("queso-madurado"),
         "alt": "Queso madurado de corte",
     },
     {
@@ -95,7 +97,7 @@ PRODUCTS = [
         "price": 11.90,
         "featured": False,
         "rating": 4.5,
-        "image": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=900&q=85",
+        "image": product_image("queso-ricotta"),
         "alt": "Queso ricotta cremoso",
     },
 ]

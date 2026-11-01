@@ -8,7 +8,7 @@
 {% set prod_sel = producto_seleccionado or datos.get('producto', '') %}
 
 <section class="relative isolate overflow-hidden bg-navy py-20" aria-labelledby="order-title">
-    <img class="absolute inset-0 -z-20 h-full w-full object-cover" src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=2000&q=88" alt="Productos lácteos artesanales" width="2000" height="1000">
+    <img class="absolute inset-0 -z-20 h-full w-full object-cover" src="{{ url_for('static', filename='img/img1_productos.avif') }}" alt="Productos lácteos artesanales" width="2000" height="1000">
     <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy via-navy/85 to-navy/30"></div>
 
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
