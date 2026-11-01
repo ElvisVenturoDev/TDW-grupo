@@ -1,7 +1,11 @@
+import mimetypes
 import os
 from pathlib import Path
 
 from flask import Flask, send_from_directory
+
+# Asegura que Flask sirva las fotos .avif con el tipo MIME correcto.
+mimetypes.add_type("image/avif", ".avif")
 
 # Carga las variables de .env (raíz del proyecto) antes de leer la configuracion.
 try:
