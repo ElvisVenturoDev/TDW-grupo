@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://dev.vallegrande.edu.pe/SANTACLARA/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://dev.vallegrande.edu.pe/SANTACLARA/nosotros</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://dev.vallegrande.edu.pe/SANTACLARA/productos</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://dev.vallegrande.edu.pe/SANTACLARA/formulario</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://dev.vallegrande.edu.pe/SANTACLARA/contacto</loc>
+    <priority>0.9</priority>
+  </url>
+</urlset>
