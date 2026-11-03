@@ -18,8 +18,11 @@ def _env(name, default=None):
 
 def get_db():
     if "db" not in g:
-        ssl_cfg = {"ssl": True}
-        
+        ssl_cfg = {}
+        ca_cert = os.environ.get("DB_SSL_CA")
+        if ca_cert:
+            ssl_cfg["ca"] = ca_cert
+
         g.db = pymysql.connect(
             host=_env("DB_HOST"),
             port=int(_env("DB_PORT")),
@@ -29,7 +32,7 @@ def get_db():
             charset="utf8mb4",
             cursorclass=DictCursor,
             autocommit=False,
-            ssl=ssl_cfg
+            ssl=ssl_cfg,
         )
     return g.db
 
@@ -47,7 +50,7 @@ def query(sql, params=()):
 
 
 def init_db():
-    get_db()  # Las tablas las crea Docker (01_schema.sql)
+    get_db()
 
 
 def init_app(app):
